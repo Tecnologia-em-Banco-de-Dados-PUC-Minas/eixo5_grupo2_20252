@@ -1,7 +1,7 @@
 # Eixo-5
 Arquitetura de Dados em Nuvem
 
-# TÍTULO DO PROJETO
+# Sistema de Recomendação de Filmes com Análise de Sentimentos
 `CURSO`
 `ANO/SEMESTRE`
 
