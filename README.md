@@ -2,10 +2,11 @@
 Arquitetura de Dados em Nuvem
 
 # Sistema de Recomendação de Filmes com Análise de Sentimentos
-`CURSO`
-`ANO/SEMESTRE`
+`Tecnologia em Banco de dados`
+`2025/2`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+A proposta deste projeto é desenvolver um **sistema de recomendação de filmes** que utilize tanto as preferências explícitas dos usuários (ex.: histórico de avaliações e interações) quanto uma **análise de sentimentos** sobre críticas de filmes. O objetivo é entregar recomendações mais personalizadas, aumentando a satisfação do usuário e o tempo de permanência na plataforma.
+
 
 ## Integrantes
 * Andressa Cristina Chaves De Oliveira
