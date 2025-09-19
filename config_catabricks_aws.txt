@@ -1,0 +1,84 @@
+Configurar Databricks e AWS
+
+1) AWS IAM — criar a role cross-account
+
+Tela: AWS Console → IAM → Roles → Create role
+
+Trusted entity
+
+Selecione AWS account → Another AWS account.
+
+Account ID: 414351767826 (conta AWS do control plane Databricks – região comercial).
+
+Require external ID: marcado.
+
+External ID: o UUID mostrado no modal Add credentials do Databricks.
+
+Permissions (teste vs produção)
+
+Para validar rápido (teste) – anexe estas AWS managed policies:
+
+AmazonEC2FullAccess
+
+AmazonVPCFullAccess
+
+AmazonS3FullAccess
+
+
+
+Trust policy (modelo)
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": { "AWS": "arn:aws:iam::414351767826:root" },
+      "Action": "sts:AssumeRole",
+      "Condition": { "StringEquals": { "sts:ExternalId": "<SEU_EXTERNAL_ID_UUID>" } }
+    }
+  ]
+}
+
+
+Crie a role e copie o Role ARN
+Ex.: arn:aws:iam::<sua-conta>:role/databricks_acess_puc_eixo05
+
+
+2) Databricks Account Console — cadastrar a credencial
+
+Tela: Account Console → Cloud resources → Credentials → Add credentials
+
+External ID: já aparece.
+
+Credential configuration name: ex. aws_credential_puc_eixo05.
+
+Role ARN: cole o ARN da role criada no IAM.
+
+Add.
+
+
+3) Criar o workspace que usa sua conta AWS
+
+Para validar a role sem desenhar VPC:
+
+Workspaces → Create workspace
+
+Use your existing cloud account 
+
+Automatically with Quickstart (Databricks-managed VPC)
+
+Region: us-east-2 (Ohio)
+
+Credential configuration: selecione aws_credential_puc_eixo05
+
+Storage: Managed (ou seu storage config)
+
+Create
+
+
+4) Atribuir a credencial ao workspace (quando aplicável)
+
+Em workspaces criados com sua conta a credencial já entra no wizard.
+
+Se precisar editar: Workspaces → (seu workspace) → Update workspace → Advanced configurations → Credential configuration.
