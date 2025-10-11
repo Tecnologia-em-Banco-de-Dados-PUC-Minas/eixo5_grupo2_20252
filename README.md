@@ -22,15 +22,16 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 
 ### 🧱 Arquitetura de Referência
 
-```text
+```
 Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
-                             │
+                              │
+                              ▼
+                         Arquivos Parquet/CSV locais
+                              │
                              ▼
-                        Arquivos Parquet/CSV locais
-                             │
-                             ▼
-                        Google Colab (Script de Processamento)
+                        Google Colab (Script de Processamento PySpark)
                              └─► Camadas Silver/Gold & análises (atuais e futuras)
+```                             
 
 
 ### 🧰 Stack Técnica
