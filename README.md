@@ -1,4 +1,4 @@
-# 🎬 Eixo 5 | Arquitetura de Dados
+# Eixo 5 | Arquitetura de Dados
 ## Pipeline de Sentimentos (IMDB)
 
 ### 📖 Visão Geral
@@ -8,7 +8,7 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 
 ---
 
-### 🚀 Escopo Atual
+### Escopo Atual
 | Etapa | Entrega | Status |
 |:--|:--|:--:|
 | 01 | Arquitetura e planejamento | ✅ Concluída |
@@ -18,9 +18,9 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 
 ---
 
-### 🧱 Arquitetura de Referência
+### Arquitetura de Referência
 
-### 🧱 Arquitetura de Referência
+### Arquitetura de Referência
 
 ```
 Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
@@ -34,7 +34,7 @@ Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
 ```                             
 
 
-### 🧰 Stack Técnica
+### Stack Técnica
 - **Google Colab / Python 3**
 - **Pandas**
 - **NumPy**
@@ -45,7 +45,7 @@ Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
 
 ---
 
-### ⚙️ Execução da Etapa 02 – Coleta de Dados
+### Execução da Etapa 02 – Coleta de Dados
 Notebook: [`coleta_dados.ipynb`](./coleta_dados.ipynb)
 
 1. Acesse o Google Colab e importe o notebook.  
@@ -56,7 +56,7 @@ Notebook: [`coleta_dados.ipynb`](./coleta_dados.ipynb)
 
 ---
 
-### 🧼 Execução da Etapa 03 – Processamento e Análise
+### Execução da Etapa 03 – Processamento e Análise
 Notebook: [`processamento.ipynb`](./processamento.ipynb)
 
 1. Carregue os arquivos gerados pela etapa 02.  
@@ -66,13 +66,13 @@ Notebook: [`processamento.ipynb`](./processamento.ipynb)
 
 ---
 
-### 📅 Roadmap Próximo
+### Roadmap Próximo
 - **Etapa 04 – Modelagem de Machine Learning:** criação de modelos de classificação de sentimentos.  
 - **Etapa 05 – Dashboard / API:** disponibilização dos resultados via Streamlit ou FastAPI.  
 
 ---
 
-### 👥 Equipe
+### Equipe
 - **Andressa Cristina Chaves De Oliveira**  
 - **Ravi Ferreira Pellizzi**  
 - **Rafael Evangelista Oliveira**  
@@ -84,4 +84,3 @@ Notebook: [`processamento.ipynb`](./processamento.ipynb)
 
 ---
 
-📘 Última atualização: Outubro de 2025
