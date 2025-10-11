@@ -1,7 +1,7 @@
 # Eixo 5 | Arquitetura de Dados
 ## Pipeline de Sentimentos (IMDB)
 
-### 📖 Visão Geral
+### Visão Geral
 Pipeline de análise de sentimentos desenvolvido na graduação em **Tecnologia em Banco de Dados (2025/2)**.  
 Nesta nova versão, o projeto foi **refatorado para execução direta em Google Colab**, eliminando a dependência de Databricks e AWS.  
 O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset **Stanford IMDB** (via Hugging Face), preparando a base para análises de sentimentos e recomendações futuras.
@@ -20,7 +20,6 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 
 ### Arquitetura de Referência
 
-### Arquitetura de Referência
 
 ```
 Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
