@@ -1,90 +1,86 @@
-# Eixo 5 | Arquitetura de Dados em Nuvem
-## Pipeline de Sentimentos IMDB
+# 🎬 Eixo 5 | Arquitetura de Dados
+## Pipeline de Sentimentos (IMDB)
 
-### Visão Geral
-Pipeline em Databricks/Spark que captura avaliações públicas de filmes (`stanfordnlp/imdb`), persiste a camada Bronze em Parquet no Amazon S3 e prepara a base para análises de sentimentos e recomendações futuras. Projeto desenvolvido na graduação em Tecnologia em Banco de Dados (2025/2).
+### 📖 Visão Geral
+Pipeline de análise de sentimentos desenvolvido na graduação em **Tecnologia em Banco de Dados (2025/2)**.  
+Nesta nova versão, o projeto foi **refatorado para execução direta em Google Colab**, eliminando a dependência de Databricks e AWS.  
+O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset **Stanford IMDB** (via Hugging Face), preparando a base para análises de sentimentos e recomendações futuras.
 
-### Escopo Atual (Etapa 02)
-- Infraestrutura provisionada via Terraform para Databricks e S3.
-- Job de ingestão executa leitura no Hugging Face e grava a camada Bronze em Parquet.
+---
 
-### Roadmap
+### 🚀 Escopo Atual
 | Etapa | Entrega | Status |
-| --- | --- | --- |
+|:--|:--|:--:|
 | 01 | Arquitetura e planejamento | ✅ Concluída |
-| 02 | Coleta e ingestão (Bronze) | ✅ Concluída |
-| 03 | Limpeza e processamento (Silver/Gold) | ⏳ Planejada |
+| 02 | Coleta e ingestão (Bronze) | ✅ Refatorada (Google Colab) |
+| 03 | Limpeza e processamento (Silver/Gold) | ✅ Concluída |
 | 04 | Insights, ML e análise de resultados | ⏳ Planejada |
 
-### Arquitetura de Referência
-```
-Hugging Face (IMDB) ──► Databricks Jobs (Spark)
-                              │
-                              ▼
-                         Amazon S3 (Parquet)
-                              └─► Camadas Silver/Gold & análises (próximo)
-```
+---
 
-### Stack
-- Databricks (jobs, clusters, secrets)
-- Apache Spark
-- Amazon S3
-- Terraform
-- Docker (execução opcional das ferramentas de IaC)
+### 🧱 Arquitetura de Referência
 
-### Execução da Etapa 02
-1. **Pré-requisitos**
-   - Conta AWS com Access/Secret Key válidas para S3.
-   - Workspace Databricks com PAT ativo.
-   - Terraform `>= 1.5` local ou uso do `Dockerfile` deste repositório.
-   - Databricks CLI autenticado.
+Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
+│
+▼
+Arquivos Parquet/CSV locais
+│
+▼
+Google Colab (Script de Processamento)
+└─► Camadas Silver/Gold & análises (atuais e futuras)
 
-2. **Segredos no Databricks**
-   ```bash
-   databricks configure --token
-   databricks secrets create-scope --scope aws
-   databricks secrets put --scope aws --key aws_access_key_id
-   databricks secrets put --scope aws --key aws_secret_access_key
-   ```
 
-3. **Provisionamento**
-   Ajuste os arquivos `*.auto.tfvars` (bucket, região, cluster). Em seguida:
-   ```bash
-   terraform init
-   terraform apply
-   ```
-   Ou, com Docker:
-   ```bash
-   docker build -t tf-db-ingest .
-   docker run --rm -it \
-     -v "$PWD":/iac -w /iac \
-     -e DATABRICKS_HOST="$DATABRICKS_HOST" \
-     -e DATABRICKS_TOKEN="$DATABRICKS_TOKEN" \
-     tf-db-ingest sh -lc "terraform init && terraform apply -auto-approve"
-   ```
 
-4. **Ingestão**
-   - Localize o job criado no workspace Databricks.
-   - Informe os widgets:
-     - `dataset_name`: `stanfordnlp/imdb`
-     - `s3_path`: `s3://<bucket>/hf/imdb_parquet/`
-   - Execute `Run now`.
+---
 
-5. **Validação**
-   ```bash
-   aws s3 ls s3://<bucket>/hf/imdb_parquet/ --recursive
-   ```
-   ```python
-   spark.read.parquet("s3a://<bucket>/hf/imdb_parquet/").show(5)
-   ```
+### 🧰 Stack Técnica
+- **Google Colab / Python 3**
+- **Pandas**
+- **NumPy**
+- **scikit-learn**
+- **Hugging Face Datasets**
+- **Matplotlib / Seaborn**
+- **NLTK (para pré-processamento de texto)**
 
-### Equipe
-- Andressa Cristina Chaves De Oliveira
-- Ravi Ferreira Pellizzi
-- Rafael Evangelista Oliveira
-- Calebe Stoffel de Castro Moura
-- Luana Patricia Gonçalves Machado
-- Igor Vinicius da Silva Nascimento
+---
 
-### Orientação
-- Cristiano Geraldo Teixeira Silva
+### ⚙️ Execução da Etapa 02 – Coleta de Dados
+Notebook: [`coleta_dados.ipynb`](./coleta_dados.ipynb)
+
+1. Acesse o Google Colab e importe o notebook.  
+2. Execute as células sequencialmente:  
+   - Carrega o dataset **stanfordnlp/imdb** via Hugging Face.  
+   - Converte e salva os dados em formato **Parquet** ou **CSV** localmente.  
+3. Os dados resultantes servirão de entrada para o notebook da etapa 03.
+
+---
+
+### 🧼 Execução da Etapa 03 – Processamento e Análise
+Notebook: [`processamento.ipynb`](./processamento.ipynb)
+
+1. Carregue os arquivos gerados pela etapa 02.  
+2. Realiza limpeza, tokenização e normalização textual.  
+3. Gera métricas e visualizações iniciais de distribuição de sentimentos.  
+4. Exporta a base tratada nas camadas **Silver/Gold**.
+
+---
+
+### 📅 Roadmap Próximo
+- **Etapa 04 – Modelagem de Machine Learning:** criação de modelos de classificação de sentimentos.  
+- **Etapa 05 – Dashboard / API:** disponibilização dos resultados via Streamlit ou FastAPI.  
+
+---
+
+### 👥 Equipe
+- **Andressa Cristina Chaves De Oliveira**  
+- **Ravi Ferreira Pellizzi**  
+- **Rafael Evangelista Oliveira**  
+- **Calebe Stoffel de Castro Moura**  
+- **Luana Patricia Gonçalves Machado**  
+- **Igor Vinicius da Silva Nascimento**
+
+**Orientação:** Cristiano Geraldo Teixeira Silva
+
+---
+
+📘 Última atualização: Outubro de 2025
