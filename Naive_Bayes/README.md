@@ -47,13 +47,15 @@ Este relatório apresenta uma análise completa dos resultados obtidos pelo mode
 
 ### 1. Comparação de Acurácia
 
-![Comparação de Acurácia](graficos/comparacao_acuracia.png)
+![Comparação de Acurácia](https://raw.githubusercontent.com/Tecnologia-em-Banco-de-Dados-PUC-Minas/eixo5_grupo2_20252/Igor/Naive_Bayes/analise_resultados/graficos/comparacao_acuracia.png)
+
+
 
 **Interpretação:** O modelo TFIDF (5000 features) alcançou 85.95% de acurácia, indicando que acerta aproximadamente 86 de cada 100 classificações.
 
 ### 2. Matriz de Confusão
 
-![Matriz de Confusão](graficos/matrizes_confusao.png)
+![Matriz de Confusão](https://github.com/Tecnologia-em-Banco-de-Dados-PUC-Minas/eixo5_grupo2_20252/blob/Igor/Naive_Bayes/analise_resultados/graficos/matrizes_confusao.png)
 
 **Interpretação:** 
 - **Verdadeiros Negativos:** 4.224 (reviews negativos corretos)
@@ -65,7 +67,7 @@ A diagonal principal (azul escuro) mostra os acertos, indicando desempenho equil
 
 ### 3. Impacto do Número de Features
 
-![Impacto do Número de Features](graficos/impacto_features.png)
+![Impacto do Número de Features](https://github.com/Tecnologia-em-Banco-de-Dados-PUC-Minas/eixo5_grupo2_20252/blob/Igor/Naive_Bayes/analise_resultados/graficos/impacto_features.png)
 
 **Interpretação:** 
 - **Tendência:** Aumentar o número de features geralmente melhora a acurácia
@@ -75,7 +77,7 @@ A diagonal principal (azul escuro) mostra os acertos, indicando desempenho equil
 
 ### 4. Comparação TF-IDF vs Count Vectorizer
 
-![Comparação TF-IDF vs Count Vectorizer](graficos/comparacao_metodos.png)
+![Comparação TF-IDF vs Count Vectorizer](https://github.com/Tecnologia-em-Banco-de-Dados-PUC-Minas/eixo5_grupo2_20252/blob/Igor/Naive_Bayes/analise_resultados/graficos/comparacao_metodos.png)
 
 **Interpretação:**
 - **TF-IDF (verde):** Supera Count Vectorizer em todas as configurações
