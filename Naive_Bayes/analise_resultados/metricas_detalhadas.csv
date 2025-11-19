@@ -1,0 +1,2 @@
+﻿Modelo,Método,Features,Acurácia (%),Taxa de Erro (%),Precisão Positiva,Recall Positivo,F1-Score Positivo,Precisão Negativa,Recall Negativo,F1-Score Negativo
+TFIDF (5000 features),tfidf,5000,85.95,14.05,84.92,87.42,86.15,87.04,84.48,85.74
