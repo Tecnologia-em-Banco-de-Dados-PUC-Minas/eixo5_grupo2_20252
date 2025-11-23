@@ -16,6 +16,7 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 | 03 | Pré-processamento de dados | ✅ Refatorada (Google Colab) |
 | 04 | Aprendizagem de máquina | ✅ Concluída |
 | 05 | Análise dos resultados | ✅ Concluída |
+| 06 | Otimizações | ⏳ Planejada |
 
 ---
 
