@@ -11,10 +11,11 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 ### Escopo Atual
 | Etapa | Entrega | Status |
 |:--|:--|:--:|
-| 01 | Arquitetura e planejamento | ✅ Concluída |
-| 02 | Coleta e ingestão (Bronze) | ✅ Refatorada (Google Colab) |
-| 03 | Limpeza e processamento (Silver/Gold) | ✅ Concluída |
-| 04 | Insights, ML e análise de resultados | ⏳ Planejada |
+| 01 | Início do projeto | ✅ Concluída |
+| 02 | Coleta de dados | ✅ Concluída |
+| 03 | Pré-processamento de dados | ✅ Refatorada (Google Colab) |
+| 04 | Aprendizagem de máquina | ✅ Concluída |
+| 05 | Análise dos resultados | ✅ Concluída |
 
 ---
 
