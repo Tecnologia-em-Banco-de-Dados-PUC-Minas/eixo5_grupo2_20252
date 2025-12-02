@@ -27,22 +27,31 @@ O pipeline coleta, limpa e processa avaliações públicas de filmes do dataset 
 Hugging Face (IMDB) ──► Google Colab (Script de Coleta)
                               │
                               ▼
-                         Arquivos Parquet/CSV locais
+                         Arquivos CSV locais
                               │
-                             ▼
+                              ▼
                         Google Colab (Script de Processamento PySpark)
-                             └─► Camadas Silver/Gold & análises (atuais e futuras)
+                              │
+                              ▼
+                         Featurizações (HTF, TF-IDF, Word2Vec)
+                              │
+                              ▼
+                        Treinamento de Modelos (LR, SVM)
+                              │
+                              ▼
+                         Análise de Resultados & Métricas
 ```                             
 
 
 ### Stack Técnica
 - **Google Colab / Python 3**
-- **Pandas**
-- **NumPy**
-- **scikit-learn**
-- **Hugging Face Datasets**
-- **Matplotlib / Seaborn**
-- **NLTK (para pré-processamento de texto)**
+- **PySpark 3.5.1** (processamento distribuído)
+- **Pandas** (manipulação de dados)
+- **NumPy** (computação científica)
+- **scikit-learn** (machine learning)
+- **Hugging Face Datasets** (carregamento de dados)
+- **NLTK** (pré-processamento de texto)
+- **Java OpenJDK 17** (runtime para Spark)
 
 ---
 
@@ -57,19 +66,47 @@ Notebook: [`coleta_dados.ipynb`](./coleta_dados.ipynb)
 
 ---
 
-### Execução da Etapa 03 – Processamento e Análise
-Notebook: [`processamento.ipynb`](./processamento.ipynb)
+### Execução da Etapa 03 – Pré-processamento de Dados
+Notebook: [`preprocessamento.ipynb`](./preprocessamento.ipynb)
 
-1. Carregue os arquivos gerados pela etapa 02.  
-2. Realiza limpeza, tokenização e normalização textual.  
-3. Gera métricas e visualizações iniciais de distribuição de sentimentos.  
-4. Exporta a base tratada nas camadas **Silver/Gold**.
+1. Configura ambiente Spark + Java no Google Colab.  
+2. Carrega os dados CSV gerados pela etapa 02.  
+3. Realiza limpeza textual (remoção de HTML, normalização, tokenização).  
+4. Implementa **três tipos de featurização:**
+   - **HTF (Hashing TF):** Features baseadas em hashing para unigramas
+   - **TF-IDF:** Combinação de unigramas + bigramas com vocabulário controlado  
+   - **Word2Vec:** Embeddings vetoriais com escalonamento MinMax
+5. Exporta datasets featurizados em formato **Parquet**.
+
+---
+
+### Execução da Etapa 04 – Aprendizado de Máquina
+Notebook: [`aprendizado_maquina.ipynb`](./aprendizado_maquina.ipynb)
+
+1. Carrega as três featurizações geradas na etapa 03.  
+2. Implementa e treina **dois algoritmos de classificação:**
+   - **Logistic Regression** com validação cruzada e grid search
+   - **Linear SVC** (Support Vector Machine) com tratamento para multiclasse
+3. Compara performance entre todas as combinações modelo+featurização.  
+4. Identifica automaticamente a **melhor configuração** baseada na acurácia.
+
+---
+
+### Execução da Etapa 05 – Análise de Resultados
+Notebook: [`analise_resultados.ipynb`](./analise_resultados.ipynb)
+
+1. Utiliza a melhor featurização identificada (TF-IDF).  
+2. Gera métricas detalhadas de avaliação:
+   - **Acurácia** e **Taxa de erro**
+   - **F1-score** para balanceamento de classes
+   - **Matriz de confusão** para análise de erros
+3. Compara performance final entre Logistic Regression e Linear SVC.
 
 ---
 
 ### Roadmap Próximo
-- **Etapa 04 – Modelagem de Machine Learning:** criação de modelos de classificação de sentimentos.  
-- **Etapa 05 – Dashboard / API:** disponibilização dos resultados via Streamlit ou FastAPI.  
+- **Etapa 06 – Otimizações:** fine-tuning de hiperparâmetros e feature engineering avançado  
+- **Etapa 07 – Deploy:** disponibilização via API REST ou interface web  
 
 ---
 
